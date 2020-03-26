@@ -20,10 +20,12 @@ import technologicalmayhem.testmod.TestMod;
 
 import java.util.List;
 
-public class FirstItem extends Item {
+public class HeartItem extends Item {
 
-    public FirstItem(Settings settings) {
-        super(settings);
+    public HeartItem() {
+        super(new Item.Settings()
+                .maxCount(8)
+        );
     }
 
     @Override
@@ -39,7 +41,7 @@ public class FirstItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(new TranslatableText("item.testmod.first_item.tooltip1").formatted(Formatting.DARK_GRAY));
-        tooltip.add(new TranslatableText("item.testmod.first_item.tooltip2").formatted(Formatting.DARK_GRAY));
+        tooltip.add(new TranslatableText("item.testmod.heart.tooltip1").formatted(Formatting.DARK_GRAY));
+        tooltip.add(new TranslatableText("item.testmod.heart.tooltip2").formatted(Formatting.DARK_GRAY));
     }
 }

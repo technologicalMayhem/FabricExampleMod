@@ -3,16 +3,17 @@ package technologicalmayhem.testmod;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import technologicalmayhem.testmod.item.FirstItem;
+import technologicalmayhem.testmod.block.CrateBlock;
+import technologicalmayhem.testmod.item.HeartItem;
 
 public class TestMod implements ModInitializer {
 
@@ -21,22 +22,34 @@ public class TestMod implements ModInitializer {
     public static final String MOD_ID = "testmod";
     public static final String MOD_NAME = "Test Mod";
 
-//    public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.create(
-//            new Identifier("testmod", "general"))
-//            .icon(() -> new ItemStack(Blocks.COBBLESTONE))
-//            .build();
+    //Items
+    public static final Item HEART_ITEM = new HeartItem();
 
-    public static final Item FIRST_ITEM = new FirstItem(new Item.Settings().maxCount(8));
+    //Blocks
+    public static final Block CRATE_BLOCK = new CrateBlock();
+
+    //Block Items
+    public static final BlockItem CRATE_BLOCK_ITEM = new BlockItem(CRATE_BLOCK, new Item.Settings());
 
     @Override
     public void onInitialize() {
         log(Level.INFO, "Initializing");
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "first_item"), FIRST_ITEM);
+        //Items
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "heart"), HEART_ITEM);
+
+        //Blocks
+        Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "crate"), CRATE_BLOCK);
+
+        //Block Items
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "crate"), CRATE_BLOCK_ITEM);
 
         FabricItemGroupBuilder.create(new Identifier("testmod", "general"))
-                .icon(() -> new ItemStack(FIRST_ITEM))
+                .icon(() -> new ItemStack(HEART_ITEM))
                 .appendItems(itemStacks -> {
-                    itemStacks.add(new ItemStack(FIRST_ITEM));
+                    //Items
+                    itemStacks.add(new ItemStack(HEART_ITEM));
+                    //Block Items
+                    itemStacks.add(new ItemStack(CRATE_BLOCK_ITEM));
                 })
                 .build();
     }
