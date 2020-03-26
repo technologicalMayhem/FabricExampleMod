@@ -3,5 +3,6 @@
   "item.testmod.heart.tooltip1": "Heals you for 5 hearts",
   "item.testmod.heart.tooltip2": "over a long time span.",
   "itemGroup.testmod.general": "Test Mod",
-  "block.testmod.crate": "Crate"
+  "block.testmod.crate": "Crate",
+  "block.testmod.orientableblock": "Orientable Block"
 }
